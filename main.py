@@ -22,7 +22,9 @@ def check_password(password):
     if has_special:
         score += 1
 
-    if score <= 2:
+    if length < 8:
+        strength = "Weak"
+    elif score <= 2:
         strength = "Weak"
     elif score <= 4:
         strength = "Medium"
