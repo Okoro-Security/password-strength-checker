@@ -37,4 +37,12 @@ print("Contains digit:", has_digit)
 print("Contains special character:", has_special)
 print("Password score:", score, "/ 5")
 print("Password strength:", strength)
+
+if strength == "Weak":
+    print("⚠️ Your password is too weak.")
+elif strength == "Medium":
+    print("⚠️ Your password could be stronger.")
+else:
+    print("✅ Your password is strong.")
+
 print("Thank you for using Password Strength Checker!")
