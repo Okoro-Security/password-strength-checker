@@ -1,3 +1,5 @@
 password = input("Enter your password: ")
 
-print("Your password is:", password)
+length = len(password)
+
+print("Password length:", length)
