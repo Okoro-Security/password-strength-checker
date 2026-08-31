@@ -6,8 +6,26 @@ has_lowercase = any(char.islower() for char in password)
 has_digit = any(char.isdigit() for char in password)
 has_special = any(not char.isalnum() for char in password)
 
+score = 0
+
+if length >= 8:
+    score += 1
+
+if has_uppercase:
+    score += 1
+
+if has_lowercase:
+    score += 1
+
+if has_digit:
+    score += 1
+
+if has_special:
+    score += 1
+
 print("Password length:", length)
 print("Contains uppercase:", has_uppercase)
 print("Contains lowercase:", has_lowercase)
 print("Contains digit:", has_digit)
 print("Contains special character:", has_special)
+print("Password score:", score, "/ 5")
