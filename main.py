@@ -1,3 +1,6 @@
+import getpass
+
+
 def check_password(password):
     length = len(password)
     has_uppercase = any(char.isupper() for char in password)
@@ -6,21 +9,32 @@ def check_password(password):
     has_special = any(not char.isalnum() for char in password)
 
     score = 0
+    suggestions = []
 
     if length >= 8:
         score += 1
+    else:
+        suggestions.append("Use at least 8 characters.")
 
     if has_uppercase:
         score += 1
+    else:
+        suggestions.append("Add at least one uppercase letter.")
 
     if has_lowercase:
         score += 1
+    else:
+        suggestions.append("Add at least one lowercase letter.")
 
     if has_digit:
         score += 1
+    else:
+        suggestions.append("Add at least one number.")
 
     if has_special:
         score += 1
+    else:
+        suggestions.append("Add at least one special character.")
 
     if length < 8:
         strength = "Weak"
@@ -38,11 +52,12 @@ def check_password(password):
         "digit": has_digit,
         "special": has_special,
         "score": score,
-        "strength": strength
+        "strength": strength,
+        "suggestions": suggestions
     }
 
 
-password = input("Enter your password: ")
+password = getpass.getpass("Enter your password: ")
 
 result = check_password(password)
 
@@ -55,11 +70,11 @@ print("Special character:", result["special"])
 print("Score:", result["score"], "/ 5")
 print("Strength:", result["strength"])
 
-if result["strength"] == "Weak":
-    print("⚠️ Your password is too weak.")
-elif result["strength"] == "Medium":
-    print("⚠️ Your password could be stronger.")
+if result["suggestions"]:
+    print("\nSuggestions:")
+    for suggestion in result["suggestions"]:
+        print("-", suggestion)
 else:
-    print("✅ Your password is strong.")
+    print("\n✅ Your password meets all security criteria.")
 
 print("\nThank you for using Password Strength Checker!")
