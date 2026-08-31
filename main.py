@@ -31,21 +31,35 @@ def check_password(password):
     else:
         strength = "Strong"
 
-    return score, strength
+    return {
+        "length": length,
+        "uppercase": has_uppercase,
+        "lowercase": has_lowercase,
+        "digit": has_digit,
+        "special": has_special,
+        "score": score,
+        "strength": strength
+    }
 
 
 password = input("Enter your password: ")
 
-score, strength = check_password(password)
+result = check_password(password)
 
-print("Password score:", score, "/ 5")
-print("Password strength:", strength)
+print("\n--- Password Analysis ---")
+print("Length:", result["length"])
+print("Uppercase:", result["uppercase"])
+print("Lowercase:", result["lowercase"])
+print("Digit:", result["digit"])
+print("Special character:", result["special"])
+print("Score:", result["score"], "/ 5")
+print("Strength:", result["strength"])
 
-if strength == "Weak":
+if result["strength"] == "Weak":
     print("⚠️ Your password is too weak.")
-elif strength == "Medium":
+elif result["strength"] == "Medium":
     print("⚠️ Your password could be stronger.")
 else:
     print("✅ Your password is strong.")
 
-print("Thank you for using Password Strength Checker!")
+print("\nThank you for using Password Strength Checker!")
