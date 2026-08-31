@@ -23,9 +23,17 @@ if has_digit:
 if has_special:
     score += 1
 
+if score <= 2:
+    strength = "Weak"
+elif score <= 4:
+    strength = "Medium"
+else:
+    strength = "Strong"
+
 print("Password length:", length)
 print("Contains uppercase:", has_uppercase)
 print("Contains lowercase:", has_lowercase)
 print("Contains digit:", has_digit)
 print("Contains special character:", has_special)
 print("Password score:", score, "/ 5")
+print("Password strength:", strength)
